@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 校园诈骗防范教育平台</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(51, 51, 51, 0.95);
+            padding: 15px 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e6e6e6;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 20px;
+        }
+
+        .contact-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .contact-form {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: #1e88e5;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #1565c0;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-method i {
+            margin-right: 10px;
+            color: #1e88e5;
+            font-size: 20px;
+        }
+
+        .map-container {
+            margin-top: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        .qr-code {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .qr-code img {
+            max-width: 200px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="/public/index.html" class="logo">校园诈骗安全教育平台</a>
+            <div class="nav-links">
+                <a href="/public/index.html#about">关于我们</a>
+                <a href="/public/weixin/index.html">微信诈骗</a>
+                <a href="/public/诈骗案例.html">诈骗案例</a>
+                <a href="/public/联系我们.html">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="contact-section">
+            <h1>联系我们</h1>
+            <p>如果您有任何问题或建议，请随时与我们联系。我们将尽快回复您的咨询。</p>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>联系方式</h2>
+                    <div class="contact-method">
+                        <i>📞</i>
+                        <div>
+                            <h4>电话</h4>
+                            <p>025-83663589</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <i>📧</i>
+                        <div>
+                            <h4>邮箱</h4>
+                            <p>security@example.edu.cn</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <i>📍</i>
+                        <div>
+                            <h4>地址</h4>
+                            <p>江苏省南京市栖霞区仙林大道163号</p>
+                        </div>
+                    </div>
+                    <div class="qr-code">
+                        <h4>关注我们的微信公众号</h4>
+                        <img src="images/qrcode.jpg" alt="微信公众号二维码">
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h2>在线留言</h2>
+                    <form id="contactForm" onsubmit="return handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">邮箱</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">电话</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">留言内容</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">提交留言</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>校园地图</h2>
+            <div class="map-container">
+                <!-- 这里可以嵌入地图，例如使用百度地图或高德地图API -->
+                <iframe src="https://map.baidu.com/poi/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6(%E4%BB%99%E6%9E%97%E6%A0%A1%E5%8C%BA)/@13225661.56,3750379.11,19z?uid=87d9f0f5e8c8f68fc6d9cd6f" 
+                        width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>本网站仅用于教育目的，提高学生防诈骗意识</p>
+        <p>如果您发现可疑情况，请立即向有关部门报告</p>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // 获取表单数据
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            // 这里可以添加发送数据到服务器的代码
+            console.log('提交的数据:', data);
+            
+            // 显示提交成功消息
+            alert('感谢您的留言，我们会尽快回复！');
+            
+            // 清空表单
+            event.target.reset();
+            
+            return false;
+        }
+    </script>
+</body>
+</html>

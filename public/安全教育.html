@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安全教育 - 校园诈骗防范教育平台</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(51, 51, 51, 0.95);
+            padding: 15px 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e6e6e6;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 20px;
+        }
+
+        .education-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .education-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .education-card h3 {
+            color: #1e88e5;
+            margin-top: 0;
+        }
+
+        .video-section {
+            margin-top: 40px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .quiz-section {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .quiz-button:hover {
+            background-color: #388e3c;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="/" class="logo">校园诈骗安全教育平台</a>
+            <div class="nav-links">
+                <a href="/public/index.html">首页</a>
+                <a href="#">安全教育</a>
+                <a href="weixin/index.html">微信诈骗</a>
+                <a href="/联系我们.html">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="education-section">
+            <h1>校园诈骗防范教育</h1>
+            <p>通过系统的安全教育，提高学生的防诈骗意识和能力。</p>
+            
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>基础知识</h3>
+                    <ul>
+                        <li>常见诈骗手段识别</li>
+                        <li>诈骗案例分析</li>
+                        <li>防范技巧学习</li>
+                        <li>安全意识培养</li>
+                    </ul>
+                </div>
+
+                <div class="education-card">
+                    <h3>实战演练</h3>
+                    <ul>
+                        <li>模拟诈骗场景</li>
+                        <li>应对策略演练</li>
+                        <li>互动式学习</li>
+                        <li>案例复盘分析</li>
+                    </ul>
+                </div>
+
+                <div class="education-card">
+                    <h3>进阶提升</h3>
+                    <ul>
+                        <li>最新诈骗手法解析</li>
+                        <li>深度防范技巧</li>
+                        <li>心理防范训练</li>
+                        <li>紧急应对方案</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="education-section">
+            <h2>视频教程</h2>
+            <div class="video-section">
+                <h3>防诈骗教学视频</h3>
+                <div class="video-container">
+                    <!-- 这里可以嵌入视频，比如来自bilibili的视频 -->
+                    <iframe src="images/zhapian.mp4" 
+                            scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="education-section">
+            <h2>互动学习</h2>
+            <div class="quiz-section">
+                <h3>知识测试</h3>
+                <p>通过在线测试，检验您的防诈骗知识掌握程度。</p>
+                <a href="#quiz" class="quiz-button">开始测试</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>本网站仅用于教育目的，提高学生防诈骗意识</p>
+        <p>如果您发现可疑情况，请立即向有关部门报告</p>
+    </div>
+</body>
+</html> 

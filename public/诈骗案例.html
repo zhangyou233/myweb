@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常见诈骗案例 - 校园诈骗安全教育平台</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        #bg-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -2;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(51, 51, 51, 0.95);
+            padding: 15px 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e6e6e6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .page-title h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            font-size: 18px;
+            color: #e6e6e6;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .case-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .case-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .case-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .case-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .case-card:hover .case-image img {
+            transform: scale(1.1);
+        }
+
+        .case-content {
+            padding: 20px;
+        }
+
+        .case-content h3 {
+            margin-top: 0;
+            color: #1e88e5;
+            font-size: 22px;
+        }
+
+        .case-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            display: inline-block;
+            background-color: #e53935;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .read-more:hover {
+            background-color: #c62828;
+        }
+
+        .footer {
+            background-color: rgba(51, 51, 51, 0.95);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <video id="bg-video" autoplay muted loop playsinline>
+        <source src="/public/images/2b08c9ae50e8753b500e4be88ccb5184.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="/public/index.html" class="logo">校园诈骗安全教育平台</a>
+            <div class="nav-links">
+                <a href="/public/index.html#about">关于我们</a>
+                <a href="/public/weixin/index.html">微信诈骗</a>
+                <a href="/public/诈骗案例.html">诈骗案例</a>
+                <a href="/public/联系我们.html">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-title">
+            <h1>常见诈骗案例分析</h1>
+            <p>了解各类诈骗手法，提高防范意识，保护自身安全</p>
+        </div>
+
+        <div class="cases-grid">
+            <div class="case-card">
+                <div class="case-image">
+                    <img src="/public/image_face/桃色.png" alt="桃色诈骗">
+                </div>
+                <div class="case-content">
+                    <h3>桃色诈骗</h3>
+                    <p>通过网络交友、虚构感情，骗取钱财或隐私信息的诈骗手法。了解如何识别和防范这类诈骗。</p>
+                    <a href="/public/案例/桃色诈骗.html" class="read-more">查看详情</a>
+                </div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-image">
+                    <img src="/public/image_face/网购.png" alt="网购诈骗">
+                </div>
+                <div class="case-content">
+                    <h3>网购诈骗</h3>
+                    <p>虚假网店、钓鱼网站、假冒客服等网购过程中常见的诈骗手段，以及防范措施。</p>
+                    <a href="/public/案例/网购诈骗.html" class="read-more">查看详情</a>
+                </div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-image">
+                    <img src="/public/image_face/游戏.png" alt="游戏诈骗">
+                </div>
+                <div class="case-content">
+                    <h3>游戏诈骗</h3>
+                    <p>游戏账号交易、虚拟道具、游戏充值等环节中的诈骗陷阱，以及如何保护游戏资产。</p>
+                    <a href="/public/案例/游戏账号诈骗.html" class="read-more">查看详情</a>
+                </div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-image">
+                    <img src="/public/image_face/刷单.png" alt="刷单诈骗">
+                </div>
+                <div class="case-content">
+                    <h3>刷单诈骗</h3>
+                    <p>以高额回报为诱饵，诱导受害人进行虚假交易，最终导致资金损失的诈骗手法。</p>
+                    <a href="/public/案例/刷单诈骗.html" class="read-more">查看详情</a>
+                </div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-image">
+                    <img src="/public/image_face/帮信.png" alt="帮信类诈骗">
+                </div>
+                <div class="case-content">
+                    <h3>帮信类诈骗</h3>
+                    <p>冒充亲友、同学或老师发送求助信息，骗取钱财的诈骗手段，以及如何识别防范。</p>
+                    <a href="/public/案例/帮信类诈骗.html" class="read-more">查看详情</a>
+                </div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-image">
+                    <img src="/public/image_face/投资.png" alt="虚假投资理财诈骗">
+                </div>
+                <div class="case-content">
+                    <h3>虚假投资理财诈骗</h3>
+                    <p>以高收益为诱饵，诱导受害人投资虚假项目，最终导致资金损失的诈骗手法。</p>
+                    <a href="/public/案例/虚假投资理财类诈骗.html" class="read-more">查看详情</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>本网站仅用于教育目的，提高学生防诈骗意识</p>
+        <p>如果您发现可疑情况，请立即向有关部门报告</p>
+    </div>
+</body>
+</html>

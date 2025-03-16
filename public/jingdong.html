@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模拟钓鱼网站</title>
+  <style>
+    img {
+      cursor: pointer;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 10px;
+    }
+    img:hover {
+      border-color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <img src="/public/jingdong.png" 
+  id="downloadImage" 
+  alt="点击下载ZIP" 
+  width="100%" 
+  height="1000">
+
+  <script>
+    document.getElementById('downloadImage').addEventListener('click', function() {
+      window.location.href = '/files/zzz.zip'; // 触发下载请求
+    });
+  </script>
+</body>
+</html>

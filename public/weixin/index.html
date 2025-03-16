@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微信聊天模拟器</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/additional.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1528101_39ha99o5h31.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .start-button {
+            background-color: #07C160;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .start-title {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .start-description {
+            color: #ddd;
+            font-size: 16px;
+            text-align: center;
+            max-width: 80%;
+            margin-bottom: 30px;
+        }
+        
+        /* 添加控制面板样式 */
+        .control-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(7, 193, 96, 0.8);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            transform: scale(1.1);
+            background-color: rgba(7, 193, 96, 1);
+        }
+        
+        /* 历史记录面板样式 */
+        .history-panel {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .history-panel.active {
+            right: 0;
+        }
+        
+        .history-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .history-item:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .history-item.locked {
+            color: #999;
+            cursor: not-allowed;
+        }
+        
+        .close-history {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- 启动屏幕 -->
+    <div class="start-screen" id="startScreen">
+        <h1 class="start-title">游戏账号诈骗防范模拟器</h1>
+        <p class="start-description">体验式防诈骗教育<br>亲身体验游戏账号交易诈骗全过程，学习如何识别和防范</p>
+        <div style="color: #ccc; max-width: 80%; margin-bottom: 20px; font-size: 14px; text-align: left;">
+            <p>- 在本模拟器中，你将扮演一名可能被骗的游戏玩家</p>
+            <p>- 体验真实的游戏账号交易诈骗过程和话术</p>
+            <p>- 你的每个选择都会影响故事走向和最终结局</p>
+            <p>- 通过亲身体验学习如何识别诈骗信号</p>
+            <p>- 点击下方按钮开始体验</p>
+        </div>
+        <button class="start-button" id="testSoundButton" style="background-color: #888; margin-bottom: 15px;">测试音效</button>
+        <button class="start-button" id="startButton">开始体验</button>
+    </div>
+
+    <div class="container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-time">12:08</span>
+            </div>
+            <div class="status-center">
+                <span class="app-icon">淘</span>
+                <span class="more-dots">...</span>
+            </div>
+            <div class="status-right">
+                <span class="notification-icon"><i class="fas fa-bell-slash"></i></span>
+                <span class="hd-icon">HD</span>
+                <span class="network">5G</span>
+                <span class="signal-icon"><i class="fas fa-signal"></i></span>
+                <span class="battery-icon">36</span>
+            </div>
+        </div>
+        
+        <!-- 微信头部 -->
+        <div class="header">
+            <div class="title-bar">
+                <div class="back"><i class="iconfont icon-fanhui"></i></div>
+                <div class="title">Mr.李</div>
+                <div class="more"><i class="iconfont icon-more"></i></div>
+            </div>
+        </div>
+        
+        <!-- 聊天内容 -->
+        <div class="chat-container">
+            <!-- 聊天内容将由脚本动态添加 -->
+        </div>
+        
+        <!-- 选择按钮区域 -->
+        <div class="choice-container">
+            <!-- 选择按钮将由脚本动态添加 -->
+        </div>
+    </div>
+    
+    <!-- 控制面板 -->
+    <div class="control-panel">
+        <div class="control-btn" id="fastForwardBtn" title="快进对话">
+            <i class="fas fa-forward"></i>
+        </div>
+        <div class="control-btn" id="historyBtn" title="查看历史选择">
+            <i class="fas fa-history"></i>
+        </div>
+    </div>
+    
+    <!-- 历史记录面板 -->
+    <div class="history-panel" id="historyPanel">
+        <div class="close-history" id="closeHistory">×</div>
+        <h3>历史选择点</h3>
+        <div id="historyList">
+            <!-- 历史选择点将由脚本动态添加 -->
+        </div>
+    </div>
+    
+    <!-- 添加音频元素 -->
+    <audio id="send-sound" preload="auto">
+        <source src="imessage_send.wav" type="audio/wav">
+    </audio>
+    <audio id="receive-sound" preload="auto">
+        <source src="imessage_receive.wav" type="audio/wav">
+    </audio>
+    <!-- 添加备用音频元素用于测试 -->
+    <audio id="test-sound" preload="auto">
+        <source src="imessage_send.wav" type="audio/wav">
+    </audio>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微信诈骗防范 - 校园诈骗安全教育平台</title>
+    <style>
+        /* 原有样式保持不变 */
+        
+        /* 添加导航栏样式 */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(51, 51, 51, 0.95);
+            padding: 15px 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e6e6e6;
+        }
+        
+        /* 确保内容不被导航栏遮挡 */
+        body {
+            padding-top: 70px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 添加导航栏 -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="/public/index.html" class="logo">校园诈骗安全教育平台</a>
+            <div class="nav-links">
+                <a href="/public/index.html#about">关于我们</a>
+                <a href="/public/weixin/index.html">微信诈骗</a>
+                <a href="/public/诈骗案例.html">诈骗案例</a>
+                <a href="/public/联系我们.html">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 原有内容保持不变 -->

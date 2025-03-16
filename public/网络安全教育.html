@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网络安全教育 - 钓鱼网站示例</title>
+    <style>
+        /* 添加导航栏样式 */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(51, 51, 51, 0.95);
+            padding: 15px 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e6e6e6;
+        }
+        
+        /* 确保内容不被导航栏遮挡 */
+        body {
+            padding-top: 70px;
+            margin: 0;
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        /* 添加警告容器样式 */
+        .warning-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .warning-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .warning-icon {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .warning-container h1 {
+            color: #e53935;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+        
+        .highlight {
+            background-color: #ffebee;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-size: 18px;
+            line-height: 1.6;
+            border-left: 4px solid #e53935;
+        }
+        
+        .content {
+            margin-top: 30px;
+        }
+        
+        .content h2 {
+            color: #333;
+            margin: 25px 0 15px 0;
+            font-size: 24px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .content ul {
+            padding-left: 20px;
+        }
+        
+        .content li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .warning-container {
+                padding: 20px;
+                margin: 20px;
+            }
+            
+            .warning-icon {
+                font-size: 36px;
+            }
+            
+            .warning-container h1 {
+                font-size: 24px;
+            }
+            
+            .highlight {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 添加导航栏 -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="/public/index.html" class="logo">校园诈骗安全教育平台</a>
+            <div class="nav-links">
+                <a href="/public/index.html#about">关于我们</a>
+                <a href="/public/weixin/index.html">微信诈骗</a>
+                <a href="/public/诈骗案例.html">诈骗案例</a>
+                <a href="/public/联系我们.html">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 原有内容保持不变 -->
+    <div class="warning-container">
+        <div class="warning-icon">⚠️</div>
+        <h1>这是一个钓鱼网站演示！</h1>
+        
+        <div class="highlight">
+            您刚才点击了一个伪装成京东商城的链接，如果这是真实的钓鱼网站，您的设备可能已经被植入恶意软件。
+        </div>
+        
+        <div class="content">
+            <h2>在真实的钓鱼攻击中，您可能会遇到：</h2>
+            <ul>
+                <li><strong>恶意软件下载</strong> - 自动下载的文件可能含有病毒、木马或勒索软件</li>
+                <li><strong>个人信息窃取</strong> - 伪装成知名网站的页面窃取您的账号密码</li>
+                <li><strong>财务损失</strong> - 骗取银行卡信息或者诱导您进行转账</li>
+                <li><strong>身份盗用</strong> - 通过获取的个人信息冒充您的身份进行违法活动</li>
+            </ul>
+            
+            <h2>如何保护自己免受钓鱼网站攻击：</h2>
+            <ul>
+                <li>仔细检查网址是否正确，特别是在输入敏感信息前</li>
+                <li>不要点击来源不明的邮件、短信或社交媒体中的链接</li>
+                <li>使用杀毒软件和浏览器安全插件</li>
+                <li>定期更新操作系统和应用程序</li>
+                <li>使用双因素身份验证保护重要账号</li>
+                <li>下载应用时使用官方应用商店</li>
+                <li>定期更换重要账号的密码，并使用不同的复杂密码</li>
+            </ul>
+            
+            <div class="highlight">
+                这个演示仅用于教育目的，帮助人们识别钓鱼网站的特征和危害。
+            </div>
+        </div>
+    </div>
+    <script>
+        //class为warning-container的添加一个点击事件，点击后跳转到https://www.jd.com
+        document.querySelector('.warning-container').addEventListener('click', function() {
+            window.location.href = 'jingdong.html';
+        });
+    </script>
+</body>
+</html>

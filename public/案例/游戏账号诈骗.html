@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏账号诈骗案例 - 校园诈骗安全教育平台</title>
+    <style>
+        /* 原有CSS样式保持不变 */
+        body {
+            margin: 0;
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(51, 51, 51, 0.95);
+            padding: 15px 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e6e6e6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 40px;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .video-section {
+            flex: 7;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-container {
+            width: 100%;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        /* 优化视频控制区域样式 */
+        .video-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2px 10px; /* 减小内边距 */
+            background-color: rgba(0,0,0,0.05); /* 更改为半透明背景 */
+            border-top: 1px solid #ddd;
+        }
+
+        .video-controls button {
+            background-color: #4dabf7;
+            color: white;
+            border: none;
+            border-radius: 3px; /* 减小圆角 */
+            padding: 3px 8px; /* 减小按钮内边距 */
+            margin-right: 6px;
+            cursor: pointer;
+            font-size: 12px; /* 减小字体 */
+            transition: all 0.2s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .video-controls button:hover {
+            background-color: #339af0;
+        }
+
+        .playback-rate {
+            display: flex;
+            align-items: center;
+        }
+
+        .playback-rate span {
+            margin-right: 5px;
+            font-size: 12px; /* 减小字体 */
+            color: #666;
+        }
+
+        .playback-rate select {
+            padding: 2px 5px; /* 进一步减小选择框内边距 */
+            border-radius: 3px;
+            border: 1px solid #ddd;
+            font-size: 12px; /* 减小字体 */
+            background-color: #f8f9fa;
+            cursor: pointer;
+        }
+        
+        .playback-rate select:hover {
+            border-color: #4dabf7;
+        }
+
+        /* 添加社交互动按钮样式 */
+        .social-actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .action-button {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .action-button:hover {
+            color: #4dabf7;
+        }
+
+        .action-button i {
+            font-size: 18px;
+        }
+
+        .action-count {
+            font-size: 12px;
+        }
+
+        /* 添加分隔线样式 */
+        .video-description {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .video-description h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .video-description p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+        }
+
+        .character-wrapper {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 100;
+            cursor: move;
+            user-select: none;
+        }
+
+        .character-image {
+            width: 150px;
+            height: 150px;
+            transition: transform 0.2s;
+        }
+
+        .character-image:hover {
+            transform: scale(1.05);
+        }
+
+        .character-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* 修改对话气泡样式，使其更像漫画风格 */
+        .dialogue-bubble {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            background-color: white;
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            max-width: 250px;
+            min-width: 200px;
+            display: none;
+            font-size: 14px;
+            line-height: 1.5;
+            z-index: 101;
+            border: 2px solid #4dabf7;
+        }
+
+        .dialogue-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 30px;
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: #4dabf7 transparent transparent;
+        }
+
+        .dialogue-bubble:before {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 32px;
+            border-width: 12px 12px 0;
+            border-style: solid;
+            border-color: white transparent transparent;
+            z-index: 1;
+        }
+
+        /* 修改角色样式 */
+        .character-wrapper {
+            position: fixed; /* 改为fixed定位，不受视频区域限制 */
+            bottom: 100px;
+            left: 50px;
+            z-index: 1000;
+            cursor: move;
+            user-select: none;
+        }
+
+        .character-image {
+            width: 120px;
+            height: 120px;
+            transition: transform 0.2s;
+        }
+
+        .character-image:hover {
+            transform: scale(1.05);
+        }
+
+        .character-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .dialogue-bubble.show {
+            display: block;
+        }
+
+        .related-videos {
+            flex: 3;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        .related-title {
+            font-size: 18px;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .video-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .video-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .video-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .video-thumbnail {
+            width: 120px;
+            height: 70px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-info {
+            flex: 1;
+        }
+
+        .video-info h4 {
+            margin: 0 0 5px 0;
+            font-size: 14px;
+        }
+
+        .video-info p {
+            margin: 0;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="/public/index.html" class="logo">校园诈骗安全教育平台</a>
+            <div class="nav-links">
+                <a href="/public/index.html">首页</a>
+                <a href="/public/weixin/index.html">微信诈骗</a>
+                <a href="/public/诈骗案例.html">诈骗案例</a>
+                <a href="/public/联系我们.html">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="video-section">
+            <div class="video-container">
+                <iframe id="mainVideo" src="//player.bilibili.com/player.html?bvid=BV1Dr4y167Ej&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> 
+                </iframe>
+            </div>
+            <!-- 添加视频描述区域 -->
+            <div class="video-description">
+                <h3>游戏账号诈骗案例分析</h3>
+                <p>本视频详细分析了网络游戏虚拟交易诈骗的常见手法、识别方式以及防范措施。通过真实案例还原，帮助大家提高警惕，避免在游戏交易中上当受骗。</p>
+            </div>
+            <!-- 添加社交互动按钮 -->
+            <div class="social-actions">
+                <div class="action-buttons">
+                    <div class="action-button" id="likeBtn">
+                        <i>👍</i>
+                        <span>点赞</span>
+                        <span class="action-count">465</span>
+                    </div>
+                    <div class="action-button" id="favoriteBtn">
+                        <i>⭐</i>
+                        <span>收藏</span>
+                        <span class="action-count">49</span>
+                    </div>
+                    <div class="action-button" id="shareBtn">
+                        <i>↗️</i>
+                        <span>转发</span>
+                        <span class="action-count">254</span>
+                    </div>
+                </div>
+                <div class="action-button" id="commentBtn">
+                    <i>💬</i>
+                    <span>评论</span>
+                    <span class="action-count">40</span>
+                </div>
+            </div>
+            <!-- 添加视频控制区域 -->
+            <div class="video-controls">
+                <div>
+                    <button id="fullscreenBtn">全屏播放</button>
+                    <button id="restartBtn">重新播放</button>
+                </div>
+                <div class="playback-rate">
+                    <span>播放速度:</span>
+                    <select id="playbackRate">
+                        <option value="0.5">0.5x</option>
+                        <option value="0.75">0.75x</option>
+                        <option value="1" selected>1.0x</option>
+                        <option value="1.25">1.25x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="2">2.0x</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="related-videos">
+            <h3 class="related-title">其他诈骗案例</h3>
+            <div class="video-list">
+                <a href="/public/案例/网购诈骗.html" class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="/public/image_face/网购.png" alt="网购诈骗">
+                    </div>
+                    <div class="video-info">
+                        <h4>网购诈骗</h4>
+                        <p>了解网购过程中的常见诈骗手段</p>
+                    </div>
+                </a>
+                <a href="/public/案例/桃色诈骗.html" class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="/public/image_face/桃色.png" alt="投资理财诈骗">
+                    </div>
+                    <div class="video-info">
+                        <h4>桃色诈骗</h4>
+                        <p>情感诱惑或性吸引来实施欺诈行为</p>
+                    </div>
+                </a>
+                <a href="/public/案例/帮信类诈骗.html" class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="/public/image_face/帮信.png" alt="贷款诈骗">
+                    </div>
+                    <div class="video-info">
+                        <h4>贷款诈骗</h4>
+                        <p>虚假贷款平台与高利贷陷阱</p>
+                    </div>
+                </a>
+                <a href="/public/案例/刷单诈骗.html" class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="/public/image_face/刷单.png" alt="兼职诈骗">
+                    </div>
+                    <div class="video-info">
+                        <h4>兼职诈骗</h4>
+                        <p>虚假招聘与刷单兼职骗局</p>
+                    </div>
+                </a>
+                <a href="/public/案例/虚假投资理财类诈骗.html" class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="/public/image_face/投资.png" alt="投资理财诈骗">
+                    </div>
+                    <div class="video-info">
+                        <h4>投资理财诈骗</h4>
+                        <p>虚假投资项目与庞氏骗局</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 将角色移到这里，作为body的直接子元素 -->
+    <div class="character-wrapper" id="draggableCharacter">
+        <div class="dialogue-bubble">
+            <p>你好！我是安全教育助手。这个视频展示了游戏账号诈骗的常见手法，请认真观看并提高警惕。</p>
+        </div>
+        <div class="character-image">
+            <img src="../images/jsongj_com_透明化图片.png" alt="安全教育助手">
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>本网站仅用于教育目的，提高学生防诈骗意识</p>
+        <p>如果您发现可疑情况，请立即向有关部门报告</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 视频控制功能
+            const video = document.getElementById('mainVideo');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            const restartBtn = document.getElementById('restartBtn');
+            const playbackRateSelect = document.getElementById('playbackRate');
+            
+            // 全屏按钮 - 通过点击B站播放器的全屏按钮来实现
+            fullscreenBtn.addEventListener('click', function() {
+                alert("请使用B站播放器内置的全屏按钮");
+            });
+            
+            // 重新播放按钮 - 通过刷新iframe实现
+            restartBtn.addEventListener('click', function() {
+                // 重新加载iframe来实现重新播放
+                const src = video.src;
+                video.src = src;
+            });
+            
+            // 播放速度选择 - 提示用户使用B站播放器内置功能
+            playbackRateSelect.addEventListener('change', function() {
+                alert("请使用B站播放器内置的播放速度控制");
+                this.value = "1"; // 重置选择框
+            });
+
+            
+            // 拖动功能实现
+            const character = document.getElementById('draggableCharacter');
+            const dialogueBubble = character.querySelector('.dialogue-bubble');
+            let isDragging = false;
+            let offsetX, offsetY;
+            let dialogueIndex = 0;
+            const dialogues = [
+                "你好！我是安全教育助手。这个视频展示了游戏账号诈骗的常见手法，请认真观看并提高警惕。",
+                "游戏账号诈骗通常发生在虚拟物品交易过程中，骗子会以低价或稀有道具为诱饵。",
+                "记住，不要轻易相信游戏中的陌生人，尤其是对方要求先付款或使用非官方交易平台时。",
+                "如果遇到可疑情况，请立即停止交易并向游戏官方客服报告。",
+                "保护好自己的游戏账号和密码，开启二次验证，不要使用简单密码。"
+            ];
+
+            // 初始化角色位置
+            character.style.position = 'fixed';
+            character.style.bottom = '100px';
+            character.style.left = '50px';
+            
+            // 显示初始对话
+            dialogueBubble.style.display = 'block';
+
+            // 鼠标事件处理
+            character.addEventListener('mousedown', function(e) {
+                if (e.target.closest('.dialogue-bubble')) return;
+                isDragging = true;
+                const rect = character.getBoundingClientRect();
+                offsetX = e.clientX - rect.left;
+                offsetY = e.clientY - rect.top;
+                character.style.cursor = 'grabbing';
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                
+                // 计算新位置，不再限制在视频区域内
+                let newX = e.clientX - offsetX;
+                let newY = e.clientY - offsetY;
+                
+                // 只限制不超出窗口边界
+                newX = Math.max(0, Math.min(newX, window.innerWidth - character.offsetWidth));
+                newY = Math.max(0, Math.min(newY, window.innerHeight - character.offsetHeight));
+                
+                character.style.left = newX + 'px';
+                character.style.top = newY + 'px';
+                character.style.bottom = 'auto';
+            });
+
+            document.addEventListener('mouseup', function() {
+                if (isDragging) {
+                    isDragging = false;
+                    character.style.cursor = 'move';
+                }
+            });
+            
+            document.addEventListener('mouseleave', function() {
+                if (isDragging) {
+                    isDragging = false;
+                    character.style.cursor = 'move';
+                }
+            });
+
+            // 点击切换对话
+            character.addEventListener('click', function(e) {
+                if (isDragging || e.target.closest('.dialogue-bubble')) return;
+                
+                dialogueIndex = (dialogueIndex + 1) % dialogues.length;
+                dialogueBubble.querySelector('p').textContent = dialogues[dialogueIndex];
+                
+                // 显示对话框并添加动画效果
+                dialogueBubble.style.display = 'block';
+                dialogueBubble.style.animation = 'popIn 0.3s ease-out';
+                
+                // 清除之前的定时器
+                if (character.timeoutId) {
+                    clearTimeout(character.timeoutId);
+                }
+                
+                // 对话框持续显示，不自动消失
+            });
+            
+            // 添加社交互动功能
+            const likeBtn = document.getElementById('likeBtn');
+            const favoriteBtn = document.getElementById('favoriteBtn');
+            const shareBtn = document.getElementById('shareBtn');
+            const commentBtn = document.getElementById('commentBtn');
+            
+            // 点赞功能
+            let liked = false;
+            likeBtn.addEventListener('click', function() {
+                const countElement = this.querySelector('.action-count');
+                let count = parseInt(countElement.textContent);
+                
+                if (!liked) {
+                    count++;
+                    this.style.color = '#4dabf7';
+                    liked = true;
+                } else {
+                    count--;
+                    this.style.color = '#666';
+                    liked = false;
+                }
+                
+                countElement.textContent = count;
+            });
+            
+            // 收藏功能
+            let favorited = false;
+            favoriteBtn.addEventListener('click', function() {
+                const countElement = this.querySelector('.action-count');
+                let count = parseInt(countElement.textContent);
+                
+                if (!favorited) {
+                    count++;
+                    this.style.color = '#ffc107';
+                    favorited = true;
+                } else {
+                    count--;
+                    this.style.color = '#666';
+                    favorited = false;
+                }
+                
+                countElement.textContent = count;
+            });
+            
+            // 转发功能
+            shareBtn.addEventListener('click', function() {
+                alert('分享链接已复制到剪贴板！');
+                this.style.color = '#4dabf7';
+                setTimeout(() => {
+                    this.style.color = '#666';
+                }, 1000);
+            });
+            
+            // 评论功能
+            commentBtn.addEventListener('click', function() {
+                alert('评论功能即将上线，敬请期待！');
+            });
+            
+            // 添加CSS动画
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes popIn {
+                    0% { transform: translateX(-50%) scale(0.8); opacity: 0; }
+                    100% { transform: translateX(-50%) scale(1); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
